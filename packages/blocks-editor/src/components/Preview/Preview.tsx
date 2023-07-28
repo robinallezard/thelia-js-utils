@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 
 import Iframe from "../Iframe/Iframe";
-import ReactModal from "react-modal";
 import { useBlocksContext } from "../../hooks/useBlockContext";
 import { usePreviewGroup } from "../../utils/queries";
-import { ReactComponent as XMarkIcon } from "../../../assets/svg/xmark.svg";
+import { ReactComponent as LogoutIcon } from "../../../assets/svg/logout.svg";
 
 import "./Preview.css";
 import Modal from "../Modal";
@@ -48,11 +47,21 @@ export default function Preview({
     <>
       {!preview.isLoading ? (
         <Modal
+          modalClassName={"Modal-preview"}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           title={intl.formatMessage({ id: "PreviewModal__TITLE" })}
         >
-          {preview.data ? <Iframe content={preview.data} /> : null}
+          {preview.data ? <Iframe content={preview.data} height='100%' /> : null}
+          <div className="Modal__Footer ">
+          <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="Modal__EscapeBtnFooter"
+            >
+              {intl.formatMessage({ id: "BACK" })}<LogoutIcon className="w-4 h-4 text-white"/>
+            </button>
+          </div>
         </Modal>
       ) : null}
     </>

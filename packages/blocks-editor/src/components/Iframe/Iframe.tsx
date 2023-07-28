@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const Iframe = ({ content }: { content: string }) => {
+const Iframe = ({ content, height= '70vh' }: { content: string; height?: string }) => {
   const ref = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Iframe = ({ content }: { content: string }) => {
     doc.close();
     node.style.width = "100%";
     if (node.contentWindow) {
-      node.style.height = `70vh`;
+      node.style.height = height;
     }
   }, [ref, content]);
 

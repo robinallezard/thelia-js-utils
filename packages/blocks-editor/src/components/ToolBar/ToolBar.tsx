@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { BlocksGroupContext } from "../../providers/BlockGroupContext";
 import ErrorBoundary from "../../components/ErrorBoundary";
@@ -21,6 +21,14 @@ const ToolBar = () => {
   const createGroup = useCreateOrUpdateGroup();
 
   const intl = useIntl();
+
+  useEffect(() => {
+    if(showPreview) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  },[showPreview])
 
   return (
     <>

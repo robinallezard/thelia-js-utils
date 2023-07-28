@@ -7,7 +7,7 @@
     @apply flex flex-col gap-3;
 
     &__Close {
-      @apply self-end text-2xl text-darkCharbon hover:text-vermillon cursor-pointer
+      @apply self-end text-2xl text-darkCharbon hover:text-lightCharbon cursor-pointer;
     }
 
     &__Title {
@@ -21,9 +21,79 @@
 
   &__Content {
     @apply overflow-hidden;
-    
+
     @screen md {
       padding: 0 60px 30px;
+    }
+  }
+}
+
+.Modal-preview {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+  height: 100vh;
+  background-color: white;
+
+  .Modal {
+    &__Wrapper {
+      @apply p-0 gap-0 flex flex-col;
+    }
+
+    &__Header {
+      @apply flex flex-row-reverse justify-between gap-3;
+      flex: 1 0 auto;
+
+      &__Close {
+      }
+
+      &__Title {
+        @apply text-lg ;
+
+        @screen md {
+          padding: 0;
+        }
+      }
+
+    }
+    &__Header,
+    &__Footer {
+      @apply container py-3 px-5 bg-lightCharbon mx-auto relative text-white;
+
+      > * {
+        @apply relative text-inherit;
+      }
+
+      &:before {
+        @apply bg-lightCharbon;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100vw;
+        height: 100%;
+        transform: translateX(-50%);
+        z-index: 0;
+      }
+    }
+
+    &__Content {
+      @apply overflow-hidden h-full flex flex-col;
+      @screen md {
+        padding: 0;
+      }
+    }
+
+    &__Footer {
+      @apply flex-auto flex-shrink-0 flex;
+    }
+    
+    &__EscapeBtnFooter {
+      @apply text-white bg-vermillon enabled:hover:bg-lightVermillon px-4 py-2 ml-auto rounded-md h-full uppercase tracking-wider text-sm font-semibold disabled:text-mediumGrey flex items-center gap-2;
     }
   }
 }
